@@ -1,0 +1,44 @@
+<div style="text-align:center">
+       
+        <h1>Restful Tasks API</h1>
+        <div style="display:inline-block;">
+            <img width="300" alt="task Logo" src="../assets/images/Tasks.jpg">
+        <div class="taskbox">
+            <div *ngFor="let task of tasks">
+                <h2>{{ task.title }}</h2>
+                <p>{{ task.description }}</p>
+                <button (click)="onEdit(task)">EDIT</button>
+                <button (click)="onDelete(task._id)">DELETE</button>
+                <hr>
+            </div>
+           
+        </div>
+        </div>
+
+        <div *ngIf="editTask">
+        <h1>Edit a Task</h1>
+        <!-- <p>{{ editTask | json }}</p> -->
+        <div class="editbox">
+            <form (submit)="onEditSubmit()">
+            <label>Title :
+                <input type="text" name="editTask.title" [(ngModel)]="editTask.title">
+            </label>
+            <br>
+            <label>Description :
+                <input type="text" name="editTask.description" [(ngModel)]="editTask.description">
+            </label>
+            <br>
+            <input type="submit" value="EDIT">
+            </form>
+        </div>
+        </div>
+        <div id="ntbox">
+        <h1>Add a Task:</h1>
+        <form (submit)="onNewTaskSubmit()">
+            <!-- <p>{{ newTask | json }}</p> -->
+            <label>Title : <input type="text" name="newTask.title" [(ngModel)] = "newTask.title"></label><br>
+            <label>Description : <input type="text" name="newTask.description" [(ngModel)] = "newTask.description"></label>
+            <input type="submit" value="Create">
+        </form>
+        </div>
+</div>
